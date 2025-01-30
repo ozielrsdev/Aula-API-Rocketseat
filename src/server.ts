@@ -1,7 +1,12 @@
-function sum(a: number, b: number): number {
-  return a + b
-}
+import express from 'express'
 
-const result : number = sum(5,2)
+const PORT = 3333
 
-console.log("resultado", result);
+const app = express()
+
+app.get('/products:id', (request, response)=>{
+ const { id } = request.params
+  response.send("Produto:" + id)
+})
+app.listen(PORT, ()=> console.log(`Server is running on port ${PORT}!`)
+)
