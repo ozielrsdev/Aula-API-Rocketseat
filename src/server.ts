@@ -6,14 +6,15 @@ const PORT = 3333
 const app = express()
 app.use(express.json())
 
-app.use(myMiddleware)
+// app.use(myMiddleware) global
 
 app.get('/products', (request, response) => {
   const { page, limit } = request.query
   response.send(`Pagina ${page} de ${limit}`)
 })
 
-app.post('/products', (request, response) => {
+// middleware em rota especifica
+app.post('/products', myMiddleware, (request, response) => {
   const { name, price } = request.body
   // response.send(`Produto: ${name} com o valor de ${price}`)
   response.status(201).json({ name, price })
