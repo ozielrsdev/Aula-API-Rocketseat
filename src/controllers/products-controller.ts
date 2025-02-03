@@ -11,12 +11,14 @@ export class ProductsController {
 
   index(request: Request, response: Response) {
     const { page, limit } = request.query
+    
     response.send(`Pagina ${page} de ${limit}`)
   }
 
   create(request: Request, response: Response) {
     const { name, price } = request.body
     // response.send(`Produto: ${name} com o valor de ${price}`)
+    throw new Error("Erro na ROTA")
     response.status(201).json({ name, price, user_id: request.user_id })
   }
 }
