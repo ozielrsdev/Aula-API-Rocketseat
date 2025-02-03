@@ -18,7 +18,9 @@ export class ProductsController {
 
   create(request: Request, response: Response) {
     const { name, price } = request.body
-    // response.send(`Produto: ${name} com o valor de ${price}`)
+    if (!name) {
+      throw new AppError("Nome do produto é obrigatório")
+    }
     // throw new Error("Erro na ROTA")
     // throw new AppError("Erro ao tentar criar um produto!", 401)
     response.status(201).json({ name, price, user_id: request.user_id })
